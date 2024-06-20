@@ -1,0 +1,271 @@
+:root {
+  --mainColor: #ff6851;
+  --secondaryColor: #18242c;
+  --acsentColor: #2e723b;
+}
+.custom-border {
+  border: 1px solid #cc5340 !important;
+}
+
+h1 {
+  margin: 0;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 1em;
+}
+
+h5 {
+  font-size: 0.8em;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+p {
+  margin: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+
+  font-family: "Montserrat", sans-serif;
+}
+/* BACKGROUND */
+.bg-secondary {
+  background-color: var(--secondaryColor) !important;
+}
+.bg-ascentColor {
+  background-color: var(--acsentColor) !important;
+}
+.bg-mainColor {
+  background-color: var(--mainColor) !important;
+}
+
+/* TEXT-COLOUR */
+.text-mainColor {
+  color: var(--mainColor);
+}
+.text-mainColor {
+  color: var(--mainColor);
+}
+
+/* BUTTON */
+.btn-mainColor {
+  background-color: var(--mainColor) !important;
+  color: white;
+  padding: auto;
+  border: 0;
+}
+
+.btn-mainColor:hover {
+  background-color: #cc5340 !important;
+  color: white;
+  padding: auto;
+  border: 0;
+}
+
+.btn-mainColor:active {
+  background-color: #993e31 !important;
+  color: white !important;
+  padding: auto;
+  border: 0;
+}
+/* Navbar */
+.navbar-toggler {
+  border: 1px solid white;
+}
+
+/* HERO */
+.banner {
+  background: url("aset/bg.jpg") no-repeat center center;
+  background-size: cover;
+  color: white;
+  padding-top: 16%;
+  padding-bottom: 16%;
+}
+
+.banner span {
+  color: var(--mainColor);
+}
+
+/* Popular */
+#popular {
+  padding-top: 8%;
+  padding-bottom: 10%;
+}
+
+/* QUOTES */
+#quotes {
+  justify-content: center;
+  align-items: center;
+  padding-top: 12%;
+  padding-bottom: 8%;
+  background: url("aset/bg_quotes.jpg");
+}
+
+/* ABOUT */
+#about {
+  justify-content: center;
+  align-items: center;
+  padding-top: 8%;
+  padding-bottom: 8%;
+}
+
+#about p {
+  text-align: justify;
+  text-indent: 2em;
+  margin-bottom: 8px;
+}
+
+/* Gallery */
+#gallery {
+  justify-content: center;
+  align-items: center;
+  padding-top: 8%;
+  padding-bottom: 12%;
+  background-color: #36373c;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+#gallery .container {
+  justify-content: center;
+}
+#gallery .container-fluid {
+  padding: 0;
+}
+
+.container2::-webkit-scrollbar {
+  display: none;
+}
+
+#gallery h1 {
+  color: var(--mainColor);
+}
+
+#quotes p {
+  font-weight: lighter;
+}
+
+#scrollContainer {
+  cursor: move;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+
+#scrollContainer:active {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+/* REVIEWS */
+#reviews {
+  background: url("aset/bg-reviews.jpg");
+  padding-top: 10%;
+  padding-bottom: 8%;
+}
+
+#reviews p {
+  font-size: 0.8em;
+}
+
+#reviews h5 {
+  font-size: 1.2rem;
+}
+
+#reviews h1 {
+  border-bottom: 0.8px solid var(--mainColor) !important;
+}
+
+#reviews .container2 {
+  display: flex;
+
+  margin-left: 28px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch; /* Enable touch scrolling for iOS Safari */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  margin-top: 20px;
+  gap: 16px;
+}
+
+/* FOOTER */
+#footer {
+  background: #243642;
+  padding-top: 4%;
+  margin: auto;
+  padding-bottom: 4%;
+}
+
+.foot .title {
+  opacity: 0.6;
+}
+
+#footer .isi-content {
+  align-items: baseline;
+}
+
+#footer .email {
+  color: white !important;
+}
+
+/* REGISTER */
+#register {
+  justify-content: center;
+  align-items: center;
+  padding-top: 8%;
+}
+#register .content {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 40px;
+  padding: 40px 40px;
+  border: 1px solid white;
+}
+#register button {
+  border-radius: 40px;
+}
+#register .form-group {
+  margin: 12px 0px;
+}
+
+/* LOGIN */
+#login {
+  padding: 12%;
+}
+#login .ibox-content {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 40px;
+  padding: 8% 8%;
+  border: 1px solid white;
+}
+
+#login .content h1 {
+  color: white;
+  font-weight: bold;
+}
+
+#login .forgot {
+  display: flex;
+  justify-content: end;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.form-control {
+  background: transparent !important;
+  border-radius: 40px;
+  font-weight: medium;
+  color: white !important;
+}
+
+@media (max-width: 500px) {
+  #login {
+    margin-top: 30%;
+  }
+}

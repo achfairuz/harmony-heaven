@@ -1,0 +1,241 @@
+body {
+  font-size: 0.875rem;
+}
+:root {
+  --mainColor: #ff6851;
+  --secondaryColor: #18242c;
+  --acsentColor: #2e723b;
+}
+h1 {
+  margin: 0;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 1em;
+}
+
+h5 {
+  font-size: 0.8em;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+p {
+  margin: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+
+  font-family: "Montserrat", sans-serif;
+}
+
+.active {
+  color: var(--mainColor) !important;
+}
+/* BACKGROUND */
+.bg-secondary {
+  background-color: var(--secondaryColor) !important;
+}
+.bg-ascentColor {
+  background-color: var(--acsentColor) !important;
+}
+.bg-mainColor {
+  background-color: var(--mainColor) !important;
+}
+
+/* TEXT-COLOUR */
+.text-mainColor {
+  color: var(--mainColor);
+}
+.text-mainColor {
+  color: var(--mainColor);
+}
+/* Input */
+.form-control {
+  border-color: rgba(255, 104, 81, 0.4);
+}
+.form-control:focus {
+  border-color: rgba(
+    255,
+    104,
+    81,
+    0.8
+  ); /* Mengatur warna border kembali ke warna default */
+  box-shadow: none; /* Menghilangkan shadow saat input aktif */
+  outline: 0; /* Menghilangkan outline (garis biru) saat input aktif di beberapa browser */
+}
+/* BUTTON */
+.btn-mainColor {
+  background-color: var(--mainColor) !important;
+  color: white;
+  padding: auto;
+  border: 0;
+}
+
+.btn-mainColor:hover {
+  background-color: #cc5340 !important;
+  color: white;
+  padding: auto;
+  border: 0;
+}
+
+.btn-mainColor:active {
+  background-color: #993e31 !important;
+  color: white !important;
+  padding: auto;
+  border: 0;
+}
+
+.feather {
+  width: 16px;
+  height: 16px;
+  vertical-align: text-bottom;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  /* rtl:raw:
+  right: 0;
+  */
+  bottom: 0;
+  /* rtl:remove */
+  left: 0;
+  z-index: 100; /* Behind the navbar */
+  padding: 64px 0 0; /* Height of navbar */
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: 0.5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+.sidebar .nav-link {
+  font-weight: 500;
+  color: #333;
+}
+
+.sidebar .nav-link .feather {
+  margin-right: 4px;
+  color: #727272;
+}
+
+.sidebar .nav-link.active {
+  color: #2470dc;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+  color: inherit;
+}
+
+.sidebar-heading {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+/*
+ * Navbar
+ */
+
+.navbar-brand {
+  padding-left: 0.75rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.navbar .navbar-toggler {
+  top: 0.25rem;
+  right: 1rem;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9990;
+}
+
+.popup-content {
+  background-color: #fefefe;
+  margin: 12% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 800px;
+  align-items: center;
+  z-index: 9990;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media (max-width: 767.98px) {
+  .sidebar {
+    top: 3.5rem;
+    padding: 0 0 !important; /* Height of navbar */
+  }
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9990;
+  }
+
+  .popup-content {
+    background-color: #fefefe;
+    margin: 18% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    max-height: 800px;
+  }
+
+  .pop-up {
+    margin: 50% auto !important;
+  }
+}
+
+/* Product */
+.table-menu {
+  border-color: rgba(255, 104, 81, 0.4);
+}
+
+.custom-border {
+  border: 1px solid #cc5340 !important;
+}
