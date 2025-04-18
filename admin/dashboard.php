@@ -34,7 +34,7 @@
                         $total = 0;
                     }
                 ?>
-                <h2>Rp. <?php echo number_format($total, 0, ',', '.'); ?></h2>
+                    <h2>Rp. <?php echo number_format($total, 0, ',', '.'); ?></h2>
                 <?php
                 } else {
                     echo "<h2>Rp. 0</h2>"; // Menampilkan 0 jika tidak ada data
@@ -93,6 +93,9 @@
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">ID pesanan</th>
+                        <th scope="col">Nama Pembeli</th>
+
                         <th scope="col">Date</th>
                         <th scope="col">Payment Method</th>
                         <th scope="col">Money Received</th>
@@ -108,47 +111,53 @@
                     include 'koneksi.php';
                     $nomer = 1;
 
-                    $query = "SELECT pesanan.*, DATE_FORMAT(pesanan.tanggal_pesanan, '%d-%M-%Y') as tanggal, pembayaran.* 
+                    $query = "SELECT pesanan.*, DATE_FORMAT(pesanan.tanggal_pesanan, '%d-%M-%Y') as tanggal, pembayaran.* , user.name
                               FROM pesanan 
-                              JOIN pembayaran ON pembayaran.id_pesanan = pesanan.id_pesanan 
+                              JOIN pembayaran ON pembayaran.id_pesanan = pesanan.id_pesanan
+                              JOIN user ON user.id_user = pesanan.id_user
+
                               WHERE pembayaran.status_pembayaran = 'Pending'";
                     $result = $koneksi->query($query);
                     if ($result->num_rows > 0) {
                         while ($aa = $result->fetch_assoc()) {
                     ?>
-                    <tr>
-                        <th scope="row"><?php echo $nomer++; ?></th>
-                        <td><?php echo $aa['tanggal'] ?></td>
-                        <td><?php echo htmlspecialchars($aa['metode_pembayaran']); ?></td>
-                        <td>Rp. <?php echo number_format($aa['uang_terima'], 0, ',', '.'); ?></td>
-                        <td>Rp. <?php echo number_format($aa['total_pembayaran'], 0, ',', '.'); ?></td>
-                        <?php
+                            <tr>
+                                <th scope="row"><?php echo $nomer++; ?></th>
+                                <td><?php echo $aa['id_pesanan'] ?></td>
+                                <td><?php echo $aa['name'] ?></td>
+
+
+                                <td><?php echo $aa['tanggal'] ?></td>
+                                <td><?php echo htmlspecialchars($aa['metode_pembayaran']); ?></td>
+                                <td>Rp. <?php echo number_format($aa['uang_terima'], 0, ',', '.'); ?></td>
+                                <td>Rp. <?php echo number_format($aa['total_harga'], 0, ',', '.'); ?></td>
+                                <?php
                                 if ($aa['metode_pembayaran'] != 'Kasir') {
                                 ?>
-                        <td><a href="<?php echo htmlspecialchars($aa['bukti_pembayaran']); ?>"><img
-                                    src="<?php echo htmlspecialchars($aa['bukti_pembayaran']); ?>"
-                                    alt="proof of payment" class="img img-fluid"
-                                    style="max-width: 100px; max-height: 100px;"></a></td>
-                        <?php
+                                    <td><a href="<?php echo htmlspecialchars($aa['bukti_pembayaran']); ?>"><img
+                                                src="<?php echo htmlspecialchars($aa['bukti_pembayaran']); ?>"
+                                                alt="proof of payment" class="img img-fluid"
+                                                style="max-width: 100px; max-height: 100px;"></a></td>
+                                <?php
                                 } else {
                                     echo " <td>Kosong</td>";
                                 }
                                 ?>
-                        <td><span class="badge bg-warning">Pending</span></td>
-                        <td>
-                            <?php if ($aa['metode_pembayaran'] == 'Kasir') { ?>
-                            <a href="?page=pembayaran&id_pesanan=<?php echo $aa['id_pesanan']; ?>&id_pembayaran=<?php echo $aa['id_pembayaran']; ?>"
-                                class="btn btn-primary btn-sm">Payment</a>
-                            <?php } elseif ($aa['metode_pembayaran'] == 'bankTransfer') { ?>
-                            <a href="CRUD.php?stts=confirmpembayaran&id_pesanan=<?php echo $aa['id_pesanan']; ?>&id_pembayaran=<?php echo $aa['id_pembayaran']; ?>"
-                                class="btn btn-success btn-sm" style="font-size: 0.875rem;"
-                                onclick="return confirm('Apakah Anda yakin ingin mengonfirmasi pembayaran ini?')">Confirm</a>
-                            <a href="CRUD.php?stts=tolakpembayaran&id_pesanan=<?php echo htmlspecialchars($aa['id_pesanan']); ?>&id_pembayaran=<?php echo htmlspecialchars($aa['id_pembayaran']); ?>"
-                                class="btn btn-danger btn-sm"
-                                onclick="return confirm('Apakah Anda yakin ingin membatalkan pembayaran ini?')">Cancel</a>
-                            <?php } ?>
-                        </td>
-                    </tr>
+                                <td><span class="badge bg-warning">Pending</span></td>
+                                <td>
+                                    <?php if ($aa['metode_pembayaran'] == 'Kasir') { ?>
+                                        <a href="?page=pembayaran&id_pesanan=<?php echo $aa['id_pesanan']; ?>&id_pembayaran=<?php echo $aa['id_pembayaran']; ?>"
+                                            class="btn btn-primary btn-sm">Payment</a>
+                                    <?php } elseif ($aa['metode_pembayaran'] == 'bankTransfer') { ?>
+                                        <a href="CRUD.php?stts=confirmpembayaran&id_pesanan=<?php echo $aa['id_pesanan']; ?>&id_pembayaran=<?php echo $aa['id_pembayaran']; ?>"
+                                            class="btn btn-success btn-sm" style="font-size: 0.875rem;"
+                                            onclick="return confirm('Apakah Anda yakin ingin mengonfirmasi pembayaran ini?')">Confirm</a>
+                                        <a href="CRUD.php?stts=tolakpembayaran&id_pesanan=<?php echo htmlspecialchars($aa['id_pesanan']); ?>&id_pembayaran=<?php echo htmlspecialchars($aa['id_pembayaran']); ?>"
+                                            class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Apakah Anda yakin ingin membatalkan pembayaran ini?')">Cancel</a>
+                                    <?php } ?>
+                                </td>
+                            </tr>
                     <?php
                         }
                     } else {
@@ -187,28 +196,28 @@
                     if ($result_berhasil->num_rows > 0) {
                         while ($aa = $result_berhasil->fetch_assoc()) {
                     ?>
-                    <tr>
-                        <th scope="row"><?php echo $$nomerberhasil++; ?></th>
-                        <td><?php echo $aa['tanggal'] ?></td>
-                        <td><?php echo htmlspecialchars($aa['metode_pembayaran']); ?></td>
-                        <td>Rp. <?php echo number_format($aa['uang_terima'], 0, ',', '.'); ?></td>
-                        <td>Rp. <?php echo number_format($aa['uang_kembali'], 0, ',', '.'); ?></td>
-                        <td>Rp. <?php echo number_format($aa['total_pembayaran'], 0, ',', '.'); ?></td>
-                        <?php
+                            <tr>
+                                <th scope="row"><?php echo $$nomerberhasil++; ?></th>
+                                <td><?php echo $aa['tanggal'] ?></td>
+                                <td><?php echo htmlspecialchars($aa['metode_pembayaran']); ?></td>
+                                <td>Rp. <?php echo number_format($aa['uang_terima'], 0, ',', '.'); ?></td>
+                                <td>Rp. <?php echo number_format($aa['uang_kembali'], 0, ',', '.'); ?></td>
+                                <td>Rp. <?php echo number_format($aa['total_pembayaran'], 0, ',', '.'); ?></td>
+                                <?php
                                 if ($aa['metode_pembayaran'] != 'Kasir') {
                                 ?>
-                        <td><a href="<?php echo htmlspecialchars($aa['bukti_pembayaran']); ?>"><img
-                                    src="<?php echo htmlspecialchars($aa['bukti_pembayaran']); ?>"
-                                    alt="proof of payment" class="img img-fluid"
-                                    style="max-width: 100px; max-height: 100px;"></a></td>
-                        <?php
+                                    <td><a href="<?php echo htmlspecialchars($aa['bukti_pembayaran']); ?>"><img
+                                                src="<?php echo htmlspecialchars($aa['bukti_pembayaran']); ?>"
+                                                alt="proof of payment" class="img img-fluid"
+                                                style="max-width: 100px; max-height: 100px;"></a></td>
+                                <?php
                                 } else {
                                     echo " <td>Kosong</td>";
                                 }
                                 ?>
 
-                        <td><span class="badge bg-success">Success</span></td>
-                    </tr>
+                                <td><span class="badge bg-success">Success</span></td>
+                            </tr>
                     <?php
                         }
                     } else {
@@ -247,26 +256,26 @@
                     if ($result_batal->num_rows > 0) {
                         while ($aa = $result_batal->fetch_assoc()) {
                     ?>
-                    <tr>
-                        <th scope="row"><?php echo $nomorbatal++; ?></th>
-                        <td><?php echo $aa['tanggal'] ?></td>
-                        <td><?php echo htmlspecialchars($aa['metode_pembayaran']); ?></td>
-                        <td>Rp. <?php echo number_format($aa['uang_terima'], 0, ',', '.'); ?></td>
-                        <td>Rp. <?php echo number_format($aa['uang_kembali'], 0, ',', '.'); ?></td>
-                        <td>Rp. <?php echo number_format($aa['total_pembayaran'], 0, ',', '.'); ?></td>
-                        <?php
+                            <tr>
+                                <th scope="row"><?php echo $nomorbatal++; ?></th>
+                                <td><?php echo $aa['tanggal'] ?></td>
+                                <td><?php echo htmlspecialchars($aa['metode_pembayaran']); ?></td>
+                                <td>Rp. <?php echo number_format($aa['uang_terima'], 0, ',', '.'); ?></td>
+                                <td>Rp. <?php echo number_format($aa['uang_kembali'], 0, ',', '.'); ?></td>
+                                <td>Rp. <?php echo number_format($aa['total_pembayaran'], 0, ',', '.'); ?></td>
+                                <?php
                                 if ($aa['metode_pembayaran'] != 'Kasir') {
                                 ?>
-                        <td><a href="<?php echo htmlspecialchars($aa['bukti_pembayaran']); ?>"><img
-                                    src="<?php echo htmlspecialchars($aa['bukti_pembayaran']); ?>"
-                                    alt="proof of payment" class="img img-fluid"
-                                    style="max-width: 100px; max-height: 100px;"></a></td>
-                        <?php
+                                    <td><a href="<?php echo htmlspecialchars($aa['bukti_pembayaran']); ?>"><img
+                                                src="<?php echo htmlspecialchars($aa['bukti_pembayaran']); ?>"
+                                                alt="proof of payment" class="img img-fluid"
+                                                style="max-width: 100px; max-height: 100px;"></a></td>
+                                <?php
                                 } else {
                                     echo " <td>Kosong</td>";
                                 }
                                 ?><td><span class="badge bg-danger">Canceled</span></td>
-                    </tr>
+                            </tr>
                     <?php
                         }
                     } else {

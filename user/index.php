@@ -6,6 +6,7 @@ if (isset($_GET['page'])) {
     $page = htmlentities($_GET['page']);
 }
 
+
 ?>
 
 
@@ -64,8 +65,8 @@ if (isset($_GET['page'])) {
                     echo "Error: " . $koneksi->error;
                 }
             } else {
-                // Jika pengguna belum login
-                header("Location: ../login.php"); // Redirect ke halaman login jika belum login
+
+                header("Location: ../login.php");
                 exit();
             }
             ?>
@@ -147,19 +148,34 @@ if (isset($_GET['page'])) {
 
 
 
+    <div id="popupLogout" class="popup popupLogout">
+        <div class="popup-content pop-up rounded">
+            <div class="title text-center">
+                <span data-feather="alert-triangle" class="mb-2" style="color: red; width: 48px; height: 48px;"></span>
+                <h4 class="text-danger fw-bold text-center">Are you sure you want to Logout?</h4>
+            </div>
+            <div class="d-flex justify-content-end mt-3 d-grid gap-2 d-flex justify-content-center">
+                <button class="btn btn-danger mt-3" id="confirm">Logout</button>
+                <button class="btn btn-secondary mt-3" id="cancel">Cancel</button>
+
+            </div>
+        </div>
+    </div>
+
+
 
     <script>
-    document.getElementById('logout').addEventListener('click', function(event) {
-        document.getElementById('popupLogout').style.display = 'block';
-    });
+        document.getElementById('logout').addEventListener('click', function(event) {
+            document.getElementById('popupLogout').style.display = 'block';
+        });
 
-    document.getElementById('cancel').addEventListener('click', function() {
-        document.getElementById('popupLogout').style.display = 'none';
-    });
+        document.getElementById('cancel').addEventListener('click', function() {
+            document.getElementById('popupLogout').style.display = 'none';
+        });
 
-    document.getElementById('confirm').addEventListener('click', function() {
-        window.location.href = '../logout.php';
-    });
+        document.getElementById('confirm').addEventListener('click', function() {
+            window.location.href = '../logout.php';
+        });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

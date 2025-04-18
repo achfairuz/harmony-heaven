@@ -106,7 +106,7 @@ if ($status == 'insertmenu') {
 
     if ($result === true) {
         $id_meja = $koneksi->insert_id;
-        $sqlupdate = "UPDATE meja SET link = 'http://harmonyheaven.test/user/meja.php?id_meja=" . $id_meja . "' WHERE id_meja = '" . $id_meja . "'";
+        $sqlupdate = "UPDATE meja SET link = 'http://localhost:8080/user/meja.php?id_meja=" . $id_meja . "' WHERE id_meja = '" . $id_meja . "'";
         $resultupdate = $koneksi->query($sqlupdate);
         echo " <script>
             alert('Meja Berhasil di tambahkan!');
@@ -211,6 +211,27 @@ if (isset($_GET['stts'], $_GET['id_pesanan'], $_GET['id_pembayaran'])) {
     $sql = "UPDATE menu SET stok = '$updatestok' where id_menu = '$id_menu' ";
     if ($koneksi->query($sql) === true) {
         echo "<script>alert('Berhasil Menambahkan Stok !!!'); window.location.href = 'index.php?page=product';</script>";
+    } else {
+        echo "<script>alert('Gagal)</script>";
+    }
+} elseif ($status == 'deletemeja') {
+    $id_meja = $_POST['id_meja'];
+
+
+    $sql = "DELETE FROM meja where id_meja = $id_meja ";
+    if ($koneksi->query($sql) === true) {
+        echo "<script>alert('Berhasil Menghapus Meja !!!'); window.location.href = 'index.php?page=meja';</script>";
+    } else {
+        echo "<script>alert('Gagal)</script>";
+    }
+} elseif ($status == 'updatemeja') {
+    $id_meja = $_POST['id_meja'];
+    $nama_meja = $_POST['nama_meja'];
+
+
+    $sql = "UPDATE meja SET meja = $nama_meja WHERE id_meja = $id_meja";
+    if ($koneksi->query($sql) === true) {
+        echo "<script>alert('Berhasil Update Meja !!!'); window.location.href = 'index.php?page=meja';</script>";
     } else {
         echo "<script>alert('Gagal)</script>";
     }

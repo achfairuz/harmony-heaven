@@ -5,13 +5,16 @@
         <!-- Nav Tabs -->
         <ul class="nav nav-tabs" id="transactionTabs" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="proses-tab" data-bs-toggle="tab" data-bs-target="#proses" type="button" role="tab" aria-controls="proses" aria-selected="true">Proses</button>
+                <button class="nav-link active" id="proses-tab" data-bs-toggle="tab" data-bs-target="#proses"
+                    type="button" role="tab" aria-controls="proses" aria-selected="true">Proses</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="berhasil-tab" data-bs-toggle="tab" data-bs-target="#berhasil" type="button" role="tab" aria-controls="berhasil" aria-selected="false">Pembayaran Berhasil</button>
+                <button class="nav-link" id="berhasil-tab" data-bs-toggle="tab" data-bs-target="#berhasil" type="button"
+                    role="tab" aria-controls="berhasil" aria-selected="false">Pembayaran Berhasil</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="batal-tab" data-bs-toggle="tab" data-bs-target="#batal" type="button" role="tab" aria-controls="batal" aria-selected="false">Di Batalkan</button>
+                <button class="nav-link" id="batal-tab" data-bs-toggle="tab" data-bs-target="#batal" type="button"
+                    role="tab" aria-controls="batal" aria-selected="false">Di Batalkan</button>
             </li>
         </ul>
 
@@ -49,7 +52,7 @@
                                 while ($aa = $result->fetch_assoc()) {
                             ?>
                                     <tr>
-                                        <th scope="row"><?php echo $nomer++; ?></th>
+                                        <th scope="row"><?php echo $aa['id_pesanan'] ?></th>
                                         <td><?php echo $aa['tanggal'] ?></td>
                                         <td><?php echo htmlspecialchars($aa['metode_pembayaran']); ?></td>
                                         <td>Rp. <?php echo number_format($aa['uang_terima'], 0, ',', '.'); ?></td>
@@ -57,13 +60,16 @@
                                         <?php
                                         if ($aa['metode_pembayaran'] != 'Kasir') {
                                         ?>
-                                            <td><a href="<?php echo htmlspecialchars($aa['bukti_pembayaran']); ?>"><img src="<?php echo htmlspecialchars($aa['bukti_pembayaran']); ?>" alt="proof of payment" class="img img-fluid" style="max-width: 100px; max-height: 100px;"></a></td>
+                                            <td><a href="<?php echo htmlspecialchars($aa['bukti_pembayaran']); ?>"><img
+                                                        src="<?php echo htmlspecialchars($aa['bukti_pembayaran']); ?>"
+                                                        alt="proof of payment" class="img img-fluid"
+                                                        style="max-width: 100px; max-height: 100px;"></a></td>
                                         <?php
                                         } else {
                                             echo " <td>Kosong</td>";
                                         }
                                         ?>
-                                        <td>Rp. <?php echo number_format($aa['total_pembayaran'], 0, ',', '.'); ?></td>
+                                        <td>Rp. <?php echo number_format($aa['total_harga'], 0, ',', '.'); ?></td>
 
                                         <td><span class="badge bg-warning">Pending</span></td>
                                     </tr>
@@ -114,7 +120,10 @@
                                         <?php
                                         if ($aa_berhasil['metode_pembayaran'] != 'Kasir') {
                                         ?>
-                                            <td><a href="<?php echo htmlspecialchars($aa_berhasil['bukti_pembayaran']); ?>"><img src="<?php echo htmlspecialchars($aa_berhasil['bukti_pembayaran']); ?>" alt="proof of payment" class="img img-fluid" style="max-width: 100px; max-height: 100px;"></a></td>
+                                            <td><a href="<?php echo htmlspecialchars($aa_berhasil['bukti_pembayaran']); ?>"><img
+                                                        src="<?php echo htmlspecialchars($aa_berhasil['bukti_pembayaran']); ?>"
+                                                        alt="proof of payment" class="img img-fluid"
+                                                        style="max-width: 100px; max-height: 100px;"></a></td>
                                         <?php
                                         } else {
                                             echo " <td>Kosong</td>";
@@ -170,7 +179,10 @@
                                         <?php
                                         if ($aa_batal['metode_pembayaran'] != 'Kasir') {
                                         ?>
-                                            <td><a href="<?php echo htmlspecialchars($aa_batal['bukti_pembayaran']); ?>"><img src="<?php echo htmlspecialchars($aa_batal['bukti_pembayaran']); ?>" alt="proof of payment" class="img img-fluid" style="max-width: 100px; max-height: 100px;"></a></td>
+                                            <td><a href="<?php echo htmlspecialchars($aa_batal['bukti_pembayaran']); ?>"><img
+                                                        src="<?php echo htmlspecialchars($aa_batal['bukti_pembayaran']); ?>"
+                                                        alt="proof of payment" class="img img-fluid"
+                                                        style="max-width: 100px; max-height: 100px;"></a></td>
                                         <?php
                                         } else {
                                             echo " <td>Kosong</td>";

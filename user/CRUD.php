@@ -2,7 +2,11 @@
 session_start();
 include '../koneksi.php';
 
+if (!isset($_SESSION['id_user'])) {
+    header("location: ../login.php");
+}
 $id_user = $_SESSION['id_user'];
+
 $status = $_GET['stts'];
 
 
